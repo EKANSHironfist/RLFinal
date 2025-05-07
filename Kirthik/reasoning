@@ -1,3 +1,6 @@
+We mentioned in our previous assignment that the use of GAE allows for smoother advantage calculation by balancing bias and variance with λ=0.95, 
+and we went with mini-batching to process data in batches of 64 over 5 epochs, improving convergence stability and reducing memory usage during updates.
+
 General Advantage Estimation (GAE):
 Reason: GAE reduces variance in advantage estimates compared to raw Monte-Carlo returns while controlling bias. It uses a parameter  λ=0.95 to balance between Monte-Carlo returns (high variance, low bias) 
 and single-step TD errors (low variance, high bias). In the code, GAE computes advantages as improving the stability of policy updates.
