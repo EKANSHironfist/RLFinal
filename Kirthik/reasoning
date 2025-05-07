@@ -1,0 +1,9 @@
+General Advantage Estimation (GAE):
+Reason: GAE reduces variance in advantage estimates compared to raw Monte-Carlo returns while controlling bias. It uses a parameter  λ=0.95 to balance between Monte-Carlo returns (high variance, low bias) 
+and single-step TD errors (low variance, high bias). In the code, GAE computes advantages as improving the stability of policy updates.
+Impact: This helps PPO achieve high rewards (near 500) by providing more reliable advantage estimates, though the drops indicate remaining instability.
+
+
+Mini-Batching:
+Reason: Mini-batching splits the episode data into smaller batches (batch size 64) for gradient updates, processed over 5 epochs. This reduces memory usage and allows more frequent updates within an episode, leading to better gradient estimates and faster convergence.
+Impact: It contributes to the steady rise to 400 by 200K steps, but the variance during updates may contribute to the observed dips, as small batches can introduce noise in gradient directions.
