@@ -1,4 +1,4 @@
-# PPO Algorithm Implementation
+# PPO 
 
 This project implements the Proximal Policy Optimization (PPO) reinforcement learning (RL) algorithm using PyTorch and OpenAI Gym environments.
 Please make sure all the necessary code files are in the same directory so the program runs correctly.
