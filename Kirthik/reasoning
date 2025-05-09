@@ -23,8 +23,19 @@ Impact:The value entropy_coef=0.06 (a moderate setting) balances exploration and
 Gradient Clipping:
 Reason: Gradient clipping is used to prevent large gradient updates that can destabilize training, especially in deep reinforcement learning where exploding gradients may occur due to 
 high variance in rewards or policy updates.
-Impact: Gradient clipping ensures stable learning by limiting gradient norms, reducing the risk of divergence and maintaining consistent performance, as seen in the stable ~450 reward 
-of PPO with Tricks compared to the dip to 300 in standard PPO.
+Impact: Gradient clipping ensures stable learning by limiting gradient norms, reducing the risk of divergence and maintaining consistent performance.
 
 ------------------------------------------------------------------------------GRAPH OBSERVATION---------------------------------------------------------------------------------------------------------
+COMPARISON BTW PPO VS PPO WITH TRICKS
+The learning curves look at standard PPO and PPO with Tricks on CartPole-v1 across 1M steps. GAE (λ=0.95) helps make advantage estimates smoother, pushing both curves up to around 
+500 by 600K steps, but PPO with Tricks shows better steadiness, holding near 450 with less ups and downs by 1M steps, while standard PPO falls to 300 with more variation. 
+Mini-batching, using 64 batches and 5 epochs, makes learning more stable in both, though PPO with Tricks benefits more, skipping the late drop that standard PPO has. 
+Gradient clipping (max_grad_norm=0.3) in PPO with Tricks keeps updates in check, lowering variation and stopping the fall to 300, unlike standard PPO which gets shaky. 
+Entropy regularization (entropy_coef=0.06) in PPO with Tricks pushes for more exploration, helping it climb to 500 more smoothly and stay steady, while standard 
+PPO has bigger swings, showing how these tricks together make things more reliable and steady.
+
+
+
+
+
 
