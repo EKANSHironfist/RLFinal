@@ -1,5 +1,8 @@
-We mentioned in our previous assignment that the use of GAE allows for smoother advantage calculation by balancing bias and variance with λ=0.95, 
-and we went with mini-batching to process data in batches of 64 over 5 epochs, improving convergence stability and reducing memory usage during updates.
+We mentioned in our previous assignment that the use of GAE allows for smoother advantage calculation by balancing bias and variance with λ=0.95, and we went with mini-batching 
+to process data in batches of 64 over 5 epochs, improving convergence stability as we noticed a dip at the end of the graph during previous implementations, and reducing memory 
+usage during updates. 
+The use of updated lr=0.0001 for policy and lr=0.001 also resulted in reduced overfitting compared to previous values of lr=0.0005 for both policy and value, 
+which resulted in overfitting when used without additional stabilizing tricks.
 
 General Advantage Estimation (GAE):
 Reason: GAE reduces variance in advantage estimates compared to raw Monte-Carlo returns while controlling bias. It uses a parameter  λ=0.95 to balance between Monte-Carlo returns (high variance, low bias) 
@@ -10,3 +13,18 @@ Impact: This helps PPO achieve high rewards (near 500) by providing more reliabl
 Mini-Batching:
 Reason: Mini-batching splits the episode data into smaller batches (batch size 64) for gradient updates, processed over 5 epochs. This reduces memory usage and allows more frequent updates within an episode, leading to better gradient estimates and faster convergence.
 Impact: It contributes to the steady rise to 400 by 200K steps, but the variance during updates may contribute to the observed dips, as small batches can introduce noise in gradient directions.
+
+Entropy:
+Reason:Without exploration, the agent might converge prematurely to a suboptimal policy, especially in environments like CartPole-v1 where local optima exist. Entropy ensures the policy remains 
+stochastic, helping the agent discover better actions and avoid getting stuck.This is particularly useful in early training or when the policy is near convergence, preventing exploitation of 
+a limited set of actions.
+Impact:The value entropy_coef=0.06 (a moderate setting) balances exploration and exploitation, tailored to the updated learning rates (lr_policy=0.0001, lr_value=0.001) and other tricks
+
+Gradient Clipping:
+Reason: Gradient clipping is used to prevent large gradient updates that can destabilize training, especially in deep reinforcement learning where exploding gradients may occur due to 
+high variance in rewards or policy updates.
+Impact: Gradient clipping ensures stable learning by limiting gradient norms, reducing the risk of divergence and maintaining consistent performance, as seen in the stable ~450 reward 
+of PPO with Tricks compared to the dip to 300 in standard PPO.
+
+------------------------------------------------------------------------------GRAPH OBSERVATION---------------------------------------------------------------------------------------------------------
+
