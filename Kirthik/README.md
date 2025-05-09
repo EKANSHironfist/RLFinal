@@ -9,7 +9,7 @@ Please make sure all the necessary code files are in the same directory so the p
 ├── ppo.py           # Proximal Policy Optimization (PPO)
 ├── networks.py      # Shared policy and value network definitions
 ├── plotting.py      # Plotting utility for visualizing training progress
-├── main.py          # Runs all algorithms in a single script
+├── main.py          # Runs the algorithm
 ├── README.md        # Project documentation
 ```
 
@@ -18,13 +18,13 @@ Please make sure all the necessary code files are in the same directory so the p
 - **PPO**: Proximal Policy Optimization using clipped surrogate objectives.
 
 The algorithm is implemented modularly and rely on shared network architectures from `networks.py`.
-Graphs of the algorithm is plotted using plot_learning_curves function in `plotting.py`
+Graph of the algorithm is plotted using plot_learning_curves function in `plotting.py`
 
 ##  How to Run
 
-###  Run All Algorithms
+###  Run  Algorithm
 
-To run all available algorithms sequentially:
+To run the algorithm use:
 
 ```bash
 python main.py
