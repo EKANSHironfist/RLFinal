@@ -25,6 +25,10 @@ Reason: Gradient clipping is used to prevent large gradient updates that can des
 high variance in rewards or policy updates.
 Impact: Gradient clipping ensures stable learning by limiting gradient norms, reducing the risk of divergence and maintaining consistent performance.
 
+Tricks used to generate graph:
+The plotting code uses interpolation to align rewards across runs at common steps, averaging them with standard deviation shading to visualize variance. 
+It applies a smoothing technique with an exponential moving average (factor=0.9) to reduce noise in the mean reward curve, enhancing readability and trend clarity.
+
 ------------------------------------------------------------------------------GRAPH OBSERVATION---------------------------------------------------------------------------------------------------------
 COMPARISON BTW PPO VS PPO WITH TRICKS
 The learning curves look at standard PPO and PPO with Tricks on CartPole-v1 across 1M steps. GAE (λ=0.95) helps make advantage estimates smoother, pushing both curves up to around 
