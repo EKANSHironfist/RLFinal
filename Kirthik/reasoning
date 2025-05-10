@@ -1,8 +1,8 @@
-We mentioned in our previous assignment that the use of GAE allows for smoother advantage calculation by balancing bias and variance with λ=0.95, and we went with mini-batching 
-to process data in batches of 64 over 5 epochs, improving convergence stability as we noticed a dip at the end of the graph during previous implementations, and reducing memory 
-usage during updates. 
-The use of updated lr=0.0001 for policy and lr=0.001 also resulted in reduced overfitting compared to previous values of lr=0.0005 for both policy and value, 
-which resulted in overfitting when used without additional stabilizing tricks.
+We noted in our earlier assignment that the use of GAE helps make advantage calculations smoother by managing bias and variance with λ=0.95, and we chose mini-batching to handle 
+data in batches of 64 over 5 epochs, which improved learning steadiness as we saw a drop at the end of the graph in past tries, while also cutting down memory use during updates. 
+The switch to updated learning rates of 0.0001 for policy and 0.001 for value also cut down on overfitting compared to earlier rates of 0.0005 for both, which led to overfitting without 
+extra stabilizing methods. On top of that, we added entropy regularization with a coefficient of 0.06 to encourage exploration and avoid quick settling, and used gradient clipping 
+with a max norm of 0.3 to keep updates steady, further lowering variation and boosting training reliability.
 
 General Advantage Estimation (GAE):
 Reason: GAE reduces variance in advantage estimates compared to raw Monte-Carlo returns while controlling bias. It uses a parameter  λ=0.95 to balance between Monte-Carlo returns (high variance, low bias) 
